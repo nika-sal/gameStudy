@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="./js/script.js" defer></script>
+
+    <title>DOG JUMP</title>
+</head>
+<body>
+
+    <div class="game-board">
+        
+        <img src="images/gog2.gif" class="dog">
+        <img src="images/shell.gif" class="vilao">
+        <img src="images/cloud2.gif" class="cloud">
+
+
+
+    </div>
+    <script>
+         const dog = document.querySelector('.dog');
+const vilao = document.querySelector(".vilao");
+
+const jump = () => {
+    dog.classList.add('jump');
+    
+    setTimeout(() => {
+
+        dog.classList.remove('jump'); 
+    }, 500);
+} 
+
+const loop = setInterval(() => {
+
+    const vilaoPosition = vilao.offsetLeft;
+    const dogPosition = +window.getComputedStyle(dog).bottom.replace('px', '');
+
+
+ 
+    if (vilaoPosition <= 120 && vilaoPosition > 0 && dogPosition < 100) {
+
+        vilao.style.animation = 'none';
+        vilao.style.left = `${vilaoPosition}px`;
+
+        dog.style.animation = 'none';
+        dog.style.bottom = `${dogPosition}px`;
+
+        dog.src = "images/gameover.gif";
+       
+        
+    }
+
+             
+       
+
+    
+
+}, 15);
+
+document.addEventListener('keydown', jump);
+    </script>
+
+ 
+</body>
+</html>
